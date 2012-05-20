@@ -1,0 +1,50 @@
+<html>
+<head>
+<title>JavaScript</title>
+</head>
+<body>
+
+
+<script language="JavaScript" type="text/javascript">
+
+
+
+function maxA(targetSum) {
+	return (Math.floor(targetSum / 3) - 1);
+}
+
+function maxB(targetSum) {
+	return Math.ceil(((targetSum - 1) / 2) - 1);
+}
+
+function minC(targetSum) {
+	return Math.ceil((targetSum / 3) + 1);
+}
+
+function main(targetSum) {
+	var myMaxB = maxB(targetSum);
+	
+	for (var c = minC(targetSum); c <= (targetSum - 3); c++) {
+		for (var a = maxA(targetSum); a > 0; a--) {
+			var b = Math.sqrt(Math.pow(c, 2) - Math.pow(a, 2));
+			
+			if (!isInt(b)) { continue; }
+			
+			if ((a + b + c) == targetSum) {
+				return [a, b, c];
+			}
+		}
+	}
+}
+
+function isInt(x) {
+	
+	if (Math.floor(x) == x) { return true; }
+		return false;
+}
+
+main(1000);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>JavaScript</title>
+</head>
+<body>
+
+
+<script language="JavaScript" type="text/javascript">
+
+function findNDigitFactors(n, x) {
+	var floorFactor = Math.floor(x / (Math.pow(10, n)));
+	var ceilFactor = Math.floor(Math.sqrt(x));
+	
+	// Check if n-digit factors are possible
+	if (Math.sqrt(x) > (Math.pow(10, n) - 1)) {
+		return null;
+	}
+	
+	for (i = floorFactor; i <= ceilFactor; i++) {
+		if (isFactor(x, i) && ((x/i) < Math.pow(10, n))) {
+			return [i, x / i];
+		}
+	}
+	
+	return null;
+}
+
+function testPalins() {
+	
+	for (j = 9; j >= 1; j--) {
+		for (k = 9; k >= 0; k--) {
+			for (l = 7; l >= 0; l--) {
+				var myPalin = (j * 100001) + (k * 10010) + (l * 1100);
+				var myFactors = findNDigitFactors(3, myPalin);
+				if (myFactors) { return [myFactors, myPalin]; }
+			}
+		}
+	}
+	
+	return null;
+}
+
+function isFactor(dividend, divisor) {
+	
+	if ((dividend % divisor) == 0) {
+		return true;
+	}
+	return false;
+}
+
+testPalins();
+
+</script>
+</body>
+</html>

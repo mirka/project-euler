@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>JavaScript</title>
+</head>
+<body>
+
+
+<script language="JavaScript" type="text/javascript">
+
+// 6k+/-1 method
+function plusMinus6k(x) {
+	var ceil;
+	
+	if (x < 4) {
+		if (x == 1) { return false; }
+		return true;
+	}
+	
+	if (x < 9) { return true; }
+	if (x % 3 == 0) { return false; }
+	
+	ceil = Math.ceil(Math.sqrt(x));
+	
+	for (var i = 5; i <= ceil; i += 6) {
+		if (x % i == 0) { return false; }
+		if (x % (i + 2) == 0) { return false; }
+	}
+	return true;
+}
+
+
+function sumOfPrimesUnder(x) {
+	var sum = 2;
+	
+	if (x < 2) { return 0; }
+	
+	for (var i = 3; i < x; i += 2) {
+		if (plusMinus6k(i)) {
+			sum += i;
+		}
+	}
+	return sum;
+}
+
+
+
+</script>
+</body>
+</html>

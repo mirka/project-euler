@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>JavaScript</title>
+</head>
+<body>
+
+
+<script language="JavaScript" type="text/javascript">
+
+function sumOfnNumbers(n) {
+	return ((n * (n + 1)) / 2);
+}
+
+function sumOfnSquares(n) {
+	var mySum = 0;
+	
+	for (i = 1; i <= n; i++) {
+		mySum += Math.pow(i, 2);
+	}
+	return mySum;
+}
+
+function main() {
+	
+	return Math.pow(sumOfnNumbers(100), 2) - sumOfnSquares(100);
+}
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>JavaScript</title>
+</head>
+<body>
+
+
+<script language="JavaScript" type="text/javascript">
+
+function largestPF(x) {
+	var ceilSqrt;
+	
+	if (x == 2) { return 2; }
+		
+	if (isFactor(x, 2)) {
+		x = largestPF(x / 2);
+	}
+	
+	ceilSqrt = Math.ceil(Math.sqrt(x));
+	
+	for (i = 3; i <= ceilSqrt; i += 2) {
+		if (isFactor(x, i)) {
+			x = largestPF(x / i);
+			break;
+		}
+	}
+	return x;
+}
+
+function isFactor(dividend, divisor) {
+	
+	if ((dividend % divisor) == 0) {
+		return true;
+	}
+	return false;
+}
+
+largestPF(128);
+
+</script>
+</body>
+</html>

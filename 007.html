@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>JavaScript</title>
+</head>
+<body>
+
+
+<script language="JavaScript" type="text/javascript">
+
+var arraySize = 99999;
+
+var mySieve = {
+	populateArrayTo: function (n) {
+		this.numArray = [];
+		
+		for (var i = 3; i <= n; i += 2) {
+			this.numArray.push(i);
+		}
+	},
+	
+	// Eratosthenes' sieve
+	eraseMultiplesOf: function (n) {
+		var startIndex = this.numArray.indexOf(n * n);
+		
+		if (startIndex > 0) {
+			for (var i = startIndex; i < this.numArray.length; i++) {
+				if (isFactor(this.numArray[i], n)) {
+					this.numArray.splice(i, 1);
+				}
+			}
+		}
+		this.numArray.shift();
+	},
+	
+	// Euler's sieve
+	eulerEraseMultiplesOf: function (n) {
+		
+		for (var i = 0; i < this.numArray.length; i++) {
+			var myMultiple = this.numArray[i] * n;
+
+			if (myMultiple > arraySize) {	break; }
+			this.numArray.splice(this.numArray.indexOf(myMultiple), 1);
+		}
+		this.numArray.shift();
+	},
+	
+	getCurrentPrime: function () {
+		
+		return this.numArray[0];
+	}	
+}
+
+	
+// 6k+/-1 method
+function plusMinus6k(x) {
+	var ceil;
+	
+	if (x < 4) {
+		if (x == 1) { return false; }
+		return true;
+	}
+	
+	if (x < 9) { return true; }
+	if (x % 3 == 0) { return false; }
+	
+	ceil = Math.ceil(Math.sqrt(x));
+	
+	for (var i = 5; i <= ceil; i += 6) {
+		if (x % i == 0) { return false; }
+		if (x % (i + 2) == 0) { return false; }
+	}
+	return true;
+}
+
+
+function nthPrime(n) {
+	var primeCount = 1;
+	
+	if (n == 1) { return 2; }
+	
+	for (var i = 3; i < 9999999; i += 2) {
+		if (plusMinus6k(i)) {
+			primeCount++;
+			if (primeCount == n) { return i; }
+		}
+	}
+}
+
+function nthPrimeSieve(n) {
+	
+	if (n == 1) { return 2; }
+	
+	mySieve.populateArrayTo(arraySize);
+	
+	for (var i = 2; i < n; i++) {
+		mySieve.eraseMultiplesOf(mySieve.getCurrentPrime());
+	}
+	return mySieve.getCurrentPrime();
+}
+
+function isFactor(dividend, divisor) {
+	
+	if ((dividend % divisor) == 0) {
+		return true;
+	}
+	return false;
+}
+
+
+
+</script>
+</body>
+</html>

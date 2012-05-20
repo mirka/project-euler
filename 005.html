@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>JavaScript</title>
+</head>
+<body>
+
+
+<script language="JavaScript" type="text/javascript">
+
+function generateMultiplesOf(x) {
+	var myInc = (x * (x - 1));
+	
+	for (d = myInc; d < (x * 99999999); d += myInc) {
+		if (checkFactorsUnder(x, d)) {
+			return d;
+		}
+	}
+}
+
+function checkFactorsUnder(n, dividend) {
+	
+	for (i = (n - 1); i > (n / 2); i--) {
+		if (!isFactor(dividend, i)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+function isFactor(dividend, divisor) {
+	
+	if ((dividend % divisor) == 0) {
+		return true;
+	}
+	return false;
+}
+
+</script>
+</body>
+</html>
